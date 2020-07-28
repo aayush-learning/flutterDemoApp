@@ -5,8 +5,11 @@ import 'package:flutter/widgets.dart';
 void main(List<String> args) {
   runApp(MaterialApp(
     title: "Awesome App",
-    home: HomePage()
-  ));
+    home: HomePage(),
+    theme: ThemeData(
+      primarySwatch: Colors.purple
+    ),
+  ),);
 }
 
 class HomePage extends StatelessWidget{
@@ -17,35 +20,56 @@ class HomePage extends StatelessWidget{
       appBar: AppBar(
         title: Text("Awesome App"),
       ),
-      body: Center(
-        child: Container(
-          alignment: Alignment.center,
-          padding: const EdgeInsets.all(8) ,
-          // color: Colors.teal,
-          width: 100,
-          height: 100,
-          child: Text(
-          "I am a box", 
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          )
-          ),
-          decoration: BoxDecoration(
-            color: Colors.teal,
-            gradient: LinearGradient(colors: [Colors.red, Colors.yellow]),
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey[400],
-                blurRadius: 5,
-                offset: Offset(2.0, 5.0)
+      body: Container(),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            // DrawerHeader(
+            //   child: Text("Hi, i am a drawer", 
+            //   style: TextStyle(
+            //     color:Colors.white
+            //   ),),
+            //   decoration: BoxDecoration(
+            //     color:Colors.purpleAccent
+            //   ),
+            // ),
+            UserAccountsDrawerHeader(
+              accountName: Text("Aayush agrawal"), 
+              accountEmail: Text("aayush@gmail.com"),
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: NetworkImage("https://images.unsplash.com/photo-1459356979461-dae1b8dcb702?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3300&q=80"),
+                // child: Image.network(
+                //   "https://images.unsplash.com/photo-1459356979461-dae1b8dcb702?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3300&q=80",
+                //   ),
               )
-            ]
-          ),
-        )
+              ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text("Account"),
+              subtitle: Text("Personal"),
+              trailing: Icon(Icons.edit),
+            ),
+             ListTile(
+              leading: Icon(Icons.email),
+              title: Text("Email"),
+              subtitle: Text("aayush@gmail.com"),
+              trailing: Icon(Icons.send),
+            ),
+             ListTile(
+              leading: Icon(Icons.help),
+              title: Text("Help"),
+              subtitle: Text("help@gmail.com"),
+              trailing: Icon(Icons.send),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){},
+      child: Icon(Icons.edit),
+      mini: true,
       ),
     );
   }
